@@ -51,8 +51,19 @@ void submenuSalas(Sistema *sistema);
 // =======================
 
 void listar_salas(Sala *vSalas, int qtdSalas){
+int i;
+    if(qtdSalas == 0){
+        printf("Nenhuma sala cadastrada\n");
+        return;
+    }
     
-
+    for(i = 0; i < qtdSalas; i++){
+        printf("\nCodigo: %d", vSalas[i].codigo);
+        printf("\nNome: %s", vSalas[i].nome);
+        printf("\nCapacidade: %d", vSalas[i].capacidade);
+        printf("\nTipo: %s", vSalas[i].tipo);
+        printf("\nAcessivel: %d\n", vSalas[i].acessivel);
+    }
 }
 
 int buscar_salas(Sala *vSalas, int qtdSalas, int codigo){
