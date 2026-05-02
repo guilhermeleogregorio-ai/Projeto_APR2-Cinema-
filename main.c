@@ -1,30 +1,61 @@
 #include <stdio.h>
 #include <string.h>    
 #include <stdlib.h> 
-#include <data.h>
+// #include <data.h>
+
+// ===========================
+// STRUCTS
+// ===========================
+
+typedef struct {
+    int codigo;  // Chave
+    char nome[50];
+    int capacidade;
+    char tipo[20]; // Ex: "3D", "IMAX"
+    int acessivel;  // 1 para Sim, 0 para Não
+} Sala;
+
+typedef struct {
+    int codigo;   // Chave
+    char nome[100];   
+    int ano;
+    char diretor[50];
+    char atores[200]; // Armazena vários nomes como uma string longa
+} Filme;
+
+typedef struct {
+    int codFilme;    // Chave composta (Filme + Sala + Data + Hora)
+    int codSala;
+    char data[11];  // "DD/MM/AAAA"
+    char horario[6]; // "HH:MM"
+    float preco;
+} Sessao;
+
+typedef struct {
+    Sala *salas;
+    int qtdSalas;
+
+    Filme *filmes;
+    int qtdFilmes;
+
+    Sessao *sessoes;
+    int qtdSessoes;
+} Sistema;
+
+void menu(Sistema *sistema);
+void submenuSalas(Sistema *sistema);
 
 
 // ===========================
 // SALAS
 // =======================
-typedef struct {
-    int codigo;      // Chave
-    char nome[50];
-    int capacidade;
-    char tipo[20];   // Ex: "3D", "IMAX"
-    int acessivel;   // 1 para Sim, 0 para Não
-} Sala;
 
-Sala *vSalas = NULL;
-int qtdSalas = 0;
-
-
-void listar_salas(){
+void listar_salas(Sala *vSalas, int qtdSalas){
     
 
 }
 
-int buscar_salas(int codigo){
+int buscar_salas(Sala *vSalas, int qtdSalas, int codigo){
 int i;
     for(i = 0 ; i <  qtdSalas; i++){
         if(vSalas[i].codigo == codigo){
@@ -34,9 +65,35 @@ int i;
     return -1;
 }
 
-void incluir_salas(Sala){
+void incluir_salas(Sala **vSalas, int *qtdSalas){
+    Sala nova;
 
+    printf("Codigo: ");
+    scanf("%d", &nova.codigo);
 
+    if(buscar_salas(*vSalas, *qtdSalas, nova.codigo) != -1){
+        printf("Sala já existe!\n");
+        return;
+    }
+
+    printf("Nome: ");
+    scanf(" %[^\n]", nova.nome);
+
+    printf("Capacidade: ");
+    scanf("%d", &nova.capacidade);
+
+    printf("Tipo: ");
+    scanf("%s", nova.tipo);
+
+    printf("Acessivel (1/0): ");
+    scanf("%d", &nova.acessivel);
+
+    *vSalas = realloc(*vSalas, (*qtdSalas + 1) * sizeof(Sala));
+
+    (*vSalas)[*qtdSalas] = nova;
+    (*qtdSalas)++;
+
+    printf("Sala cadastrada!\n");
 }
 
 void alterar_salas(){
@@ -48,51 +105,9 @@ void excluir_salas(){
 }
 
 // ===========================
-// SESSOES
-// =======================
-typedef struct {
-    int codFilme;    // Chave composta (Filme + Sala + Data + Hora)
-    int codSala;
-    char data[11];   // "DD/MM/AAAA"
-    char horario[6]; // "HH:MM"
-    float preco;
-} Sessao;
-
-Sessao *vSessoes = NULL;
-int qtdSessoes = 0;
-
-void listar_sessoes(){
-
-}
-
-int buscar_sessoes(){
-
-}
-
-void incluir_sessoes(){
-
-}
-
-void alterar_sessoes(){
-
-}
-
-void excluir_sessoes(){
-    
-}
-// ===========================
 // FILMES
 // =======================
-typedef struct {
-    int codigo;      // Chave
-    char nome[100];
-    int ano;
-    char diretor[50];
-    char atores[200]; // Armazena vários nomes como uma string longa
-} Filme;
 
-Filme *vFilmes = NULL;
-int qtdFilmes = 0;
 
 void listar_Filmes(){
 
@@ -113,6 +128,31 @@ void alterar_Filmes(){
 void excluir_filmes(){
     
 }
+
+// ===========================
+// SESSOES
+// =======================
+
+void listar_sessoes(){
+
+}
+
+int buscar_sessoes(){
+
+}
+
+void incluir_sessoes(){
+
+}
+
+void alterar_sessoes(){
+
+}
+
+void excluir_sessoes(){
+    
+}
+
 // ===========================
 // RELATORIO
 // ===========================
@@ -140,7 +180,7 @@ void excluir_relatorios(){
 // MENU
 // ===========================
 
-void menu(){
+void menu(Sistema *sistema){
     int opc;
     
     do {
@@ -160,20 +200,20 @@ void menu(){
 
         switch (opc){
             case 1:
-                submenuSalas()
-                break:
+                submenuSalas(sistema);
+                break;
             case 2:
-                submenuFilmes()
-                break:
+                //submenuFilmes()
+                break;
             case 3:
-                submenuSessoes()
-                break:
+                //submenuSessoes()
+                break;
             case 4:
-                submenuRelatorios()
-                break:
+                //submenuRelatorios()
+                break;
             case 5:
                 printf("Saindo...\n");
-                break:
+                break;
             default:
                 printf("Opcao invalida!\n");
                         
@@ -184,17 +224,16 @@ void menu(){
     
 }
 
-void submenuSalas(){
+void submenuSalas(Sistema *sistema){
     int opc;
 
     do{
         printf("\n--- Salas ---");
         printf("\n1. Listar todas as salas");
-        printf("\n2. Buscar sala");
-        printf("\n3. Incluir sala");
-        printf("\n4. Alterar sala");
-        printf("\n5. Excluir sala");
-        printf("\n6. Sair");
+        printf("\n2. Incluir sala");
+        printf("\n3. Alterar sala");
+        printf("\n4. Excluir sala");
+        printf("\n5. Sair");
         printf("\nOpcao: ");
 
         scanf("%d", &opc);
@@ -202,37 +241,21 @@ void submenuSalas(){
 
         switch(opc) {
             case 1:
-                listar_salas();
+                listar_salas(sistema->salas, sistema->qtdSalas);
                 break;
-
-            case 2: {
-                int codigo;
-                printf("Codigo: ");
-                scanf("%d", &codigo);
-
-                int pos = buscar_sala(codigo);
-
-                if(pos == -1)
-                    printf("Nao encontrada\n");
-                else
-                    printf("Encontrada: %s\n", vSalas[pos].nome);
-
+            case 2:
+                incluir_salas(&sistema->salas, &sistema->qtdSalas);
                 break;
-            }
 
             case 3:
-                incluir_sala();
+                alterar_salas();
                 break;
 
             case 4:
-                alterar_sala();
+                excluir_salas();
                 break;
 
             case 5:
-                excluir_sala();
-                break;
-
-            case 6:
                 printf("Saindo...\n");
                 break;
 
@@ -240,7 +263,7 @@ void submenuSalas(){
                 printf("Opcao invalida!\n");
         }
 
-    } while (opc != 6);
+    } while (opc != 5);
 
     return;
 }
@@ -263,7 +286,7 @@ void submenuFilmes(){
         switch(opc) {
             case 1:
                 //listar_Filmes(filmes);
-                printf("Listando...\n")
+                printf("Listando...\n");
                 break;
             case 2:
                 //buscar_Filmes(filmes);
@@ -305,7 +328,7 @@ void submenuSessoes(){
         switch(opc) {
             case 1:
                 // listar_sessoes(sessoes);
-                printf("Listando...\n")
+                printf("Listando...\n");
                 break;
             case 2:
                 // buscar_sessoes(sessoes);
@@ -345,8 +368,7 @@ void submenuRelatorios(){
 
         switch(opc) {
             case 1:
-                
-                printf("Listando...\n")
+                printf("Listando...\n");
                 break;
             case 2:
                             
@@ -364,11 +386,22 @@ void submenuRelatorios(){
 }
 
 int main(){
-    
-    menu(); 
-    // Aqui free() nos mallocs antes de fechar
+    Sistema sistema;
+
+    sistema.salas = NULL;
+    sistema.qtdSalas = 0;
+
+    sistema.filmes = NULL;
+    sistema.qtdFilmes = 0;
+
+    sistema.sessoes = NULL;
+    sistema.qtdSessoes = 0;
+
+    menu(&sistema);
+
+    free(sistema.salas);
+    free(sistema.filmes);
+    free(sistema.sessoes);
+
     return 0;
-
-
-
 }
