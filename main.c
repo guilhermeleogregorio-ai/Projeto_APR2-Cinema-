@@ -20,14 +20,22 @@ int qtdSalas = 0;
 
 
 void listar_salas(){
+    
 
 }
 
-int buscar_salas(){
-
+int buscar_salas(int codigo){
+int i;
+    for(i = 0 ; i <  qtdSalas; i++){
+        if(vSalas[i].codigo == codigo){
+            return i;
+        }
+    }
+    return -1;
 }
 
-void incluir_salas(){
+void incluir_salas(Sala){
+
 
 }
 
@@ -137,7 +145,11 @@ void menu(){
     
     do {
         printf("\n=== Sistema cinema ===");
-        printf("\n1. Salas\n2. Filmes\n3. Sessões\n4. Relatórios\n5. Sair");
+        printf("\n1. Salas");
+        printf("\n2. Filmes");
+        printf("\n3. Sessões");
+        printf("\n4. Relatórios");
+        printf("\n5. Sair");
         printf("\nOpção");
 
         if(scanf("%d", &opc) != 1){
@@ -168,43 +180,69 @@ void menu(){
         }
    } while (opc != 5);
    
-   return 0;     
+   return;
     
 }
 
 void submenuSalas(){
     int opc;
 
-
     do{
-        printf("\n--- Salar ---");
-        printf("\n1. Listar todas as salas\n2. Buscar sala\n3. Incluir sala\n4. Alterar sala\n5. Excluir sala\n6. Sair");
-        printf("\nOpcao");
-        getchar();
+        printf("\n--- Salas ---");
+        printf("\n1. Listar todas as salas");
+        printf("\n2. Buscar sala");
+        printf("\n3. Incluir sala");
+        printf("\n4. Alterar sala");
+        printf("\n5. Excluir sala");
+        printf("\n6. Sair");
+        printf("\nOpcao: ");
+
+        scanf("%d", &opc);
+        while(getchar() != '\n');
 
         switch(opc) {
             case 1:
-                // listar_salas(salas);
+                listar_salas();
                 break;
-            case 2:
-                // buscar_salas(salas);
+
+            case 2: {
+                int codigo;
+                printf("Codigo: ");
+                scanf("%d", &codigo);
+
+                int pos = buscar_sala(codigo);
+
+                if(pos == -1)
+                    printf("Nao encontrada\n");
+                else
+                    printf("Encontrada: %s\n", vSalas[pos].nome);
+
                 break;
+            }
+
             case 3:
-                //salas = incluir_salas(salas);
+                incluir_sala();
                 break;
+
             case 4:
-                // salas = alterar_salas(salas);
+                alterar_sala();
                 break;
+
             case 5:
-               // salas = excluir_salas(salas);
+                excluir_sala();
                 break;
+
             case 6:
                 printf("Saindo...\n");
-                break:
+                break;
+
+            default:
+                printf("Opcao invalida!\n");
         }
+
     } while (opc != 6);
 
-    return 0;
+    return;
 }
 
 void submenuFilmes(){
@@ -213,9 +251,14 @@ void submenuFilmes(){
 
     do{
         printf("\n--- Filmes ---");
-        printf("\n1. Listar todas as salas\n2. Buscar sala\n3. Incluir sala\n4. Alterar sala\n5. Excluir sala\n6. Sair");
-        printf("\nOpcao");
-        getchar();
+        printf("\n1. Listar todos os filmes");
+        printf("\n2. Buscar filme");
+        printf("\n3. Incluir filme");
+        printf("\n4. Alterar filme");
+        printf("\n5. Excluir filme");
+        printf("\n6. Sair");
+        scanf("%d", &opc);
+        while(getchar() != '\n');   
 
         switch(opc) {
             case 1:
@@ -250,9 +293,14 @@ void submenuSessoes(){
 
     do{
         printf("\n--- Sessoes ---");
-        printf("\n1. Listar todas as sessoes\n2. Buscar sessao\n3. Incluir sessao\n4. Alterar sessao\n5. Excluir sessao\n6. Sair");
-        printf("\nOpcao");
-        getchar();
+        printf("\n1. Listar todas as sessoes");
+        printf("\n2. Buscar sessao");
+        printf("\n3. Incluir sessao");
+        printf("\n4. Alterar sessao");
+        printf("\n5. Excluir sessao");
+        printf("\n6. Sair");
+        scanf("%d", &opc);
+        while(getchar() != '\n');
 
         switch(opc) {
             case 1:
@@ -286,9 +334,14 @@ void submenuRelatorios(){
 
     do{
         printf("\n--- Relatorios ---");
-        printf("\n1. Listar todos os relatorios\n2. Buscar relatorio\n3. Incluir relatorio\n4. Alterar relatorio\n5. Excluir relatorio\n6. Sair");
-        printf("\nOpcao");
-        getchar();
+        printf("\n1. Listar todos os relatorios");
+        printf("\n2. Buscar relatorio");
+        printf("\n3. Incluir relatorio");
+        printf("\n4. Alterar relatorio");
+        printf("\n5. Excluir relatorio");
+        printf("\n6. Sair");
+        scanf("%d", &opc);
+        while(getchar() != '\n');
 
         switch(opc) {
             case 1:
