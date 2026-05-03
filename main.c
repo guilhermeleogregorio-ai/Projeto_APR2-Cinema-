@@ -111,7 +111,49 @@ void alterar_salas(){
 
 }
 
-void excluir_salas(){
+void excluir_salas(Sistema *sistema){
+    int codigo;
+
+    printf("Digite o codigo da sala que deseja excluir\n");
+    scanf("%d", &codigo);
+
+    int pos = buscar_salas(sistema->salas,sistema->qtdSalas, codigo);
+
+    if(pos == -1){
+        printf("Sala não encontrada");
+    }
+
+    // Mostrar dados
+    printf("\nSala encontrada:");
+    printf("\nCodigo: %d", sistema->salas[pos].codigo);
+    printf("\nNome: %s\n", sistema->salas[pos].nome);
+
+    //confirmação
+    char confirm;
+    printf("\n Deseja excluir? (s/n)\n");
+    scanf(" %c", &confirm);
+
+    if(confirm !='s' && confirm !='S'){
+        printf("Cancelado.\n");
+        return;
+    }
+
+    int i;
+    for(i = pos; i < sistema->qtdSalas -1; i++){
+        sistema->salas[i] = sistema->salas[i + 1];
+    }
+
+    sistema->qtdSalas--;
+
+    //realocar
+    if(sistema->qtdSalas == 0){
+        free(sistema->salas);
+        sistema->salas = NULL;
+    } else {
+        sistema->salas = realloc(sistema->salas, sistema->qtdSalas *sizeof(Sala));
+    }
+
+    printf("Sala excluida com sucesso!\n");
 
 }
 
@@ -201,7 +243,7 @@ void menu(Sistema *sistema){
         printf("\n3. Sessões");
         printf("\n4. Relatórios");
         printf("\n5. Sair");
-        printf("\nOpção");
+        printf("\nOpção\n");
 
         if(scanf("%d", &opc) != 1){
             printf("Entrada invalida! Digite um numero");
@@ -245,7 +287,7 @@ void submenuSalas(Sistema *sistema){
         printf("\n3. Alterar sala");
         printf("\n4. Excluir sala");
         printf("\n5. Sair");
-        printf("\nOpcao: ");
+        printf("\nOpcao:\n ");
 
         scanf("%d", &opc);
         while(getchar() != '\n');
@@ -263,7 +305,7 @@ void submenuSalas(Sistema *sistema){
                 break;
 
             case 4:
-                excluir_salas();
+                excluir_salas(sistema);
                 break;
 
             case 5:
