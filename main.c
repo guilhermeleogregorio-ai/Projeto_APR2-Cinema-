@@ -287,7 +287,7 @@ void listar_Filmes(){
     }
 }
 
-int buscar_Filmes(int codigo){
+int buscar_filmes(int codigo){
     int i;
     for(i = 0 ; i < qtdFilmes; i++){
         if(filmes[i].codigo == codigo){
@@ -333,7 +333,45 @@ void alterar_Filmes(){
 }
 
 void excluir_filmes(){
+    int codigo, pos , i;
+    char confirm;
+
+    printf("Digite o codigo do filme que deseja excluir:");
+    scanf("%d", &codigo);
+
+    pos = buscar_filmes(codigo);
+    if(pos == -1){
+        printf("Filme não encontrado!\n");
+        return;
+    }
+
+    printf("\nFilme encontrado:");
+    printf("\nCodigo: %d", filmes[pos].codigo);
+    printf("\nNome: %s", filmes[pos].nome);
+
+
+    printf("\nDeseja excluir? (s/n): ");
+    scanf("%c", &confirm);
+
+    if(confirm != 's' && confirm != 'S'){
+        printf("Cancelado.\n");
+        return;
+    }
+
+    for(i = pos; i < qtdFilmes - 1; i++){
+        filmes[i] = filmes[i + 1];
+    }
+
+    qtdFilmes--;
+
+    if(qtdFilmes == 0){
+        free(filmes);
+        filmes = NULL;
+    }else {
+        filmes = realloc(filmes, qtdFilmes * sizeof(Filme));
+    }
     
+    printf("Filme excluido com sucesso!\n");
 }
 
 
