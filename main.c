@@ -223,7 +223,7 @@ void incluir_salas(){
     Sala *temp;
     temp = realloc(salas, (qtdSalas + 1) * sizeof(Sala));
 
-    if(temp != NULL){
+    if(temp == NULL){
     printf("Erro ao alocar!\n");
     return;
     }
