@@ -194,6 +194,30 @@ void incluir_salas(){
 }
 
 void alterar_salas(){
+    int codigo, pos;
+
+    printf("Codigo da sala: ");
+    scanf("%d", &codigo);
+
+    pos = buscar_salas(codigo);
+    if(pos == -1){
+        printf("Sala não encontrada!\n");
+        return;
+    }
+
+    printf("Novo nome (%s): ", salas[pos].nome);
+    scanf("%[^\n]", salas[pos].nome);
+
+    printf("Nova capacidade (%d): ", salas[pos].capacidade);
+    scanf("%d", &salas[pos].capacidade);
+
+    printf("Novo tipo (%s): ", salas[pos].tipo);
+    scanf("%s", salas[pos].tipo);
+
+    printf("Novo acessivel (%d): ", salas[pos].acessivel);
+    scanf("%d", &salas[pos].acessivel);
+
+    printf("Sala alterada!\n");
 
 }
 
