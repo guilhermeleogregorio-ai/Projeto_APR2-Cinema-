@@ -668,7 +668,7 @@ void relatorio_filmes(){
     }
     
     fclose(arq);
-    printf("Relatorio salvo em relatorio_filmrd.txt");
+    printf("Relatorio salvo em relatorio_filmes.txt");
 }
 
 
