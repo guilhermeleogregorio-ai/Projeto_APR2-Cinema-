@@ -3,9 +3,9 @@
 #include <stdlib.h> 
 // #include <data.h>
 
-// ===========================
+
 // STRUCTS
-// ===========================
+
 
 typedef struct {
     int codigo;  // Chave
@@ -31,24 +31,46 @@ typedef struct {
     float preco;
 } Sessao;
 
-typedef struct {
-    Sala *salas;
-    int qtdSalas;
 
-    Filme *filmes;
-    int qtdFilmes;
+// Variávies globais
+Sala *salas= NULL;
+int qtdSalas = 0;
 
-    Sessao *sessoes;
-    int qtdSessoes;
-} Sistema;
+Filme *filmes = NULL;
+int qtdFilmes = 0;
 
-void menu(Sistema *sistema);
-void submenuSalas(Sistema *sistema);
+Sessao *sessoes = NULL;
+int qtdSessoes = 0;
+
+//Protótipos
+
+void menu();
+void submenuSalas();
+void submenuFilmes();
+void submenuSessoes();
+void submenuRelatorios();
+
+void carregarDados();
+void salvarDados();
+
+void listar_salas();
+int buscar_salas(int codigo);
+void incluir_salas();
+void alterar_salas();
+void excluir_salas();
+
+void listar_filmes();
+int buscar_filmes(int codigo);
 
 
-// ===========================
+
+
+
+
+
+
 // SALAS
-// =======================
+
 
 void listar_salas(Sala *vSalas, int qtdSalas){
 int i;
@@ -157,9 +179,9 @@ void excluir_salas(Sistema *sistema){
 
 }
 
-// ===========================
+
 // FILMES
-// =======================
+
 
 
 void listar_Filmes(){
@@ -182,9 +204,9 @@ void excluir_filmes(){
     
 }
 
-// ===========================
+
 // SESSOES
-// =======================
+
 
 void listar_sessoes(){
 
@@ -206,9 +228,8 @@ void excluir_sessoes(){
     
 }
 
-// ===========================
+
 // RELATORIO
-// ===========================
 
 void listar_relatorio(){
 
@@ -229,9 +250,9 @@ void alterar_relatorios(){
 void excluir_relatorios(){
     
 }
-// ===========================
+
 // MENU
-// ===========================
+
 
 void menu(Sistema *sistema){
     int opc;
