@@ -337,7 +337,7 @@ void incluir_Filmes(){
         printf("Erro ao alocar:\n");
         return;
     }
-    
+
     filmes[qtdFilmes] = novo;
     qtdFilmes++;
 
@@ -477,7 +477,15 @@ void incluir_sessoes(){
     printf("Preco: ");
     scanf("%f", &nova.preco);
 
-    sessoes = realloc(sessoes, (qtdSessoes + 1) * sizeof(Sessao));
+    Sessao *temp;
+    
+    temp = realloc(sessoes, (qtdSessoes + 1) * sizeof(Sessao));
+    
+    if(temp == NULL){
+        printf("Erro ao alocar:\n");
+        return;
+    }
+
     sessoes[qtdSessoes] = nova;
     qtdSessoes++;
 
