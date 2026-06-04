@@ -567,7 +567,7 @@ void excluir_relatorios(){
 // MENU
 
 
-void menu(Sistema *sistema){
+void menu(){
     int opc;
     
     do {
@@ -611,16 +611,17 @@ void menu(Sistema *sistema){
     
 }
 
-void submenuSalas(Sistema *sistema){
+void submenuSalas(){
     int opc;
 
     do{
         printf("\n--- Salas ---");
         printf("\n1. Listar todas as salas");
-        printf("\n2. Incluir sala");
-        printf("\n3. Alterar sala");
-        printf("\n4. Excluir sala");
-        printf("\n5. Sair");
+        printf("\n2. Buscar sala");
+        printf("\n3. Incluir sala");
+        printf("\n4. Alterar sala");
+        printf("\n5. Excluir sala");
+        printf("\n6. Voltar");
         printf("\nOpcao:\n ");
 
         scanf("%d", &opc);
@@ -628,24 +629,37 @@ void submenuSalas(Sistema *sistema){
 
         switch(opc) {
             case 1:
-                listar_salas(sistema->salas, sistema->qtdSalas);
+                listar_salas();
                 break;
             case 2:
-                incluir_salas(&sistema->salas, &sistema->qtdSalas);
+                int cod, pos;
+                printf("Codigo: ");
+                scanf("%d", &cod);
+                pos = buscar_salas(cod);
+                if(pos == -1){
+                    printf("Sala nao encontrada!\n");
+                }else{
+                    printf("\nCodigo: %d", salas[pos].codigo);
+                    printf("\nNome: %s", salas[pos].nome);
+                    printf("\nCapacidade: %d", salas[pos].capacidade);
+                    printf("\nTipo: %s", salas[pos].tipo);
+                    printf("\nAcessivel: %d\n", salas[pos].acessivel);
+                }
                 break;
 
             case 3:
-                alterar_salas();
+                incluir_salas();
                 break;
 
             case 4:
-                excluir_salas(sistema);
+                alterar_salas();
                 break;
-
             case 5:
+                excluir_salas();
+                break;
+            case 6:
                 printf("Saindo...\n");
                 break;
-
             default:
                 printf("Opcao invalida!\n");
         }
