@@ -287,8 +287,14 @@ void listar_Filmes(){
     }
 }
 
-int buscar_Filmes(){
-
+int buscar_Filmes(int codigo){
+    int i;
+    for(i = 0 ; i < qtdFilmes; i++){
+        if(filmes[i].codigo == codigo){
+            return i ;
+        }
+    }
+    return -1;
 }
 
 void incluir_Filmes(){
