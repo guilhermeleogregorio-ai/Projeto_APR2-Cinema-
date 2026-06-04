@@ -372,6 +372,7 @@ void incluir_Filmes(){
         return;
     }
 
+    filmes = temp;
     filmes[qtdFilmes] = novo;
     qtdFilmes++;
 
@@ -520,6 +521,7 @@ void incluir_sessoes(){
         return;
     }
 
+    sessoes = temp;
     sessoes[qtdSessoes] = nova;
     qtdSessoes++;
 
