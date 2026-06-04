@@ -303,7 +303,7 @@ void incluir_Filmes(){
     printf("Codigo: ");
     scanf("%d", &novo.codigo);
 
-    if(buscar_Filmes(novo.codigo) != -1){
+    if(buscar_filmes(novo.codigo) != -1){
         printf("Filme já existe!\n");
         return;
     }
@@ -542,9 +542,40 @@ void excluir_sessoes(){
 }
 
 
-// RELATORIO
+// RELATORIOS
 
-void listar_relatorio(){
+void relatorio_salas(){
+    FILE *arq;
+    char tipo[20];
+    int capacidade, i , encontrados = 0 ;
+
+    printf("Tipo de exibicao: ");
+    scanf(" %[^\n]", tipo);
+    printf("Capacidade minima: ");
+    scanf("%d", &capacidade);
+
+    arq = fopen("relatorio_salas.txt", "w");
+    fprintf(arq, "RELATORIO DE SALAS\n");
+    fprintf(arq, "Tipo: %s | Capacidade > %d\n\n", tipo, capacidade);
+
+    for(i = 0; i < qtdSalas; i++){
+        if(strcmp(salas[i].tipo, tipo) == 0 && salas[i].capacidade > capacidade){
+            fprintf(arq, "Codigo: %d\n", salas[i].codigo);
+            fprintf(arq, "Nome: %s\n", salas[i].nome);
+            fprintf(arq, "Capacidade: %d\n", salas[i].capacidade);
+            fprintf(arq, "Tipo: %s\n", salas[i].tipo);
+            fprintf(arq, "Acessivel: %d\n", salas[i].acessivel);
+            fprintf(arq, "-------------------\n");
+            encontrados++;
+        }
+    }
+
+    if(encontrados == 0){
+        fprintf(arq, "Nenhuma sala encontrada.\n");
+    }
+
+    fclose(arq);
+    printf("Relatorio salvo em relatorio_salas.txt\n");
 
 }
 
@@ -556,13 +587,6 @@ void incluir_relatorios(){
 
 }
 
-void alterar_relatorios(){
-
-}
-
-void excluir_relatorios(){
-    
-}
 
 // MENU
 
@@ -692,7 +716,7 @@ void submenuFilmes(){
                 int cod, pos;
                 printf("Codigo: ");
                 scanf("%d", &cod);
-                pos = buscar_Filmes(cod);
+                pos = buscar_filmes(cod);
                 if(pos == -1){
                     printf("Filme nao encontrado!\n");
                 }else {
@@ -803,6 +827,7 @@ void submenuRelatorios(){
             case 2:
                             
                 break;
+
             case 3:
                 
                 break;
@@ -814,6 +839,8 @@ void submenuRelatorios(){
 
     return ;
 }
+
+//Main
 
 int main(){
     carregarDados();
