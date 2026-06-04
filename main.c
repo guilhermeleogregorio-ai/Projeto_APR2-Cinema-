@@ -469,6 +469,28 @@ void incluir_sessoes(){
 }
 
 void alterar_sessoes(){
+    int codFilme, codSala, pos;
+    char data[11], horario[6];
+
+    printf("Codigo do filme: ");
+    scanf("%d", &codFilme);
+    printf("Codigo da Sala: ");
+    scanf("%d", &codSala);
+    printf("Data: ");
+    scanf(" %[^\n]", data);
+    printf("Horario: ");
+    scanf(" %[^\n]", horario);
+
+    pos = buscar_sessoes(codFilme, codSala, data, horario);
+    if(pos == -1){
+        printf("Sessao não encontrada!\n");
+        return;
+    }
+
+    printf("Novo preco (R$ %2.f): ", sessoes[pos].preco);
+    scanf("%f", &sessoes[pos].preco);
+
+    printf("Sessao alterada!\n");
 
 }
 
