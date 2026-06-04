@@ -61,13 +61,56 @@ void excluir_salas();
 
 void listar_filmes();
 int buscar_filmes(int codigo);
+void incluir_filmes();
+void alterar_filmes();
+void excluir_filmes();
 
+void listar_sessoes();
+int buscar_sessoes(int codFilme, int codSala, char*data, char *horario);
+void incluir_sessoes();
+void alterar_sessoes();
+void excluir_sessoes();
 
+void relatorio_salas();
+void relatorio_filmes();
+void relatorio_sessoes();
 
+//Persistencia
 
+void carregarDados(){
+    FILE *arq;
+    Sala salaTemp;
+    Filme filmeTemp;
+    Sessao sessaoTemp;
 
-
-
+    arq = fopen("salas.dat" , "rb");
+    if(arq != NULL){
+        while(fread(&salaTemp, sizeof(Sala), 1 , arq)== 1){
+            salas = realloc(salas , (qtdSalas + 1) * sizeof(Sala));
+            salas[qtdSalas] = salaTemp;
+            qtdSalas++;
+        }
+        fclose(arq);
+    }
+    arq = fopen("filmes.dat", "rb");
+    if(arq != NULL) {
+        while(fread(&filmeTemp, sizeof(Filme), 1, arq) == 1) {
+            filmes = realloc(filmes, (qtdFilmes + 1) * sizeof(Filme));
+            filmes[qtdFilmes] = filmeTemp;
+            qtdFilmes++;
+        }
+        fclose(arq);
+    }
+    arq = fopen("sessoes.dat", "rb");
+    if(arq != NULL){
+        while(fread(&sessaoTemp, sizeof(Sessao), 1 ,arq)== 1){
+            sessoes = realloc(sessoes , (qtdSessoes + 1) * sizeof(Sessao));
+            sessoes[qtdSessoes] = sessaoTemp;
+            qtdSessoes++;
+        }
+        fclose(arq);
+    }
+}
 
 // SALAS
 
