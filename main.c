@@ -909,7 +909,7 @@ void submenuSessoes(){
                 }else {
                     printf("\nFilme: %d | Sala: %d", sessoes[pos].codFilme, sessoes[pos].codSala);
                     printf("\nData: %s | Horario: %s", sessoes[pos].data , sessoes[pos].horario);
-                    printf("\nPreco: R$ %.2f\n", sessoes[pos].preco);
+                    printf("\nPreco: R$ %2.f\n", sessoes[pos].preco);
                 }
                 break;
             }
