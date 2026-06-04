@@ -396,7 +396,7 @@ void alterar_Filmes(){
         scanf(" %[^\n]", filmes[pos].nome);
 
         printf("Novo ano (%d): ", filmes[pos].ano);
-        scanf(" %[^\n]", &filmes[pos].ano);
+        scanf("%d", &filmes[pos].ano);
 
         printf("Novo diretor (%s): ", filmes[pos].diretor);
         scanf(" %[^\n]", filmes[pos].diretor);
