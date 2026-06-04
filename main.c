@@ -816,22 +816,13 @@ void submenuRelatorios(){
 }
 
 int main(){
-    Sistema sistema;
+    carregarDados();
+    menu();
+    salvarDados();
 
-    sistema.salas = NULL;
-    sistema.qtdSalas = 0;
-
-    sistema.filmes = NULL;
-    sistema.qtdFilmes = 0;
-
-    sistema.sessoes = NULL;
-    sistema.qtdSessoes = 0;
-
-    menu(&sistema);
-
-    free(sistema.salas);
-    free(sistema.filmes);
-    free(sistema.sessoes);
+    free(salas);
+    free(filmes);
+    free(sessoes);
 
     return 0;
 }
