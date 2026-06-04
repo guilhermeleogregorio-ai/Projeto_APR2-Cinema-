@@ -428,6 +428,43 @@ int buscar_sessoes(int codFilme, int codSala, char *data, char*horario){
 }
 
 void incluir_sessoes(){
+    Sessao nova;
+
+    printf("Codigo do filme: ");
+    scanf("%d", &nova.codFilme);
+
+    if(buscar_filmes(nova.codFilme)== -1){
+        printf("Filme não existe!\n");
+        return;
+    }
+
+    printf("Codigo da Sala: ");
+    scanf("%d", &nova.codSala);
+
+    if(buscar_salas(nova.codSala)== -1){
+        printf("Sala não existe!\n");
+        return;
+    }
+
+    printf("Data (DD/MM/AAAA):");
+    scanf("%[^\n]", nova.data);
+
+    printf("Horario (HH:MM): ");
+    scanf("%[^\n]", nova.horario);
+
+    if(buscar_sessoes(nova.codFilme, nova.codSala, nova.data , nova.horario) != -1){
+        printf("Sessão ja existe!\n");
+        return;
+    }
+
+    printf("Preco: ");
+    scanf("%f", &nova.preco);
+
+    sessoes = realloc(sessoes, (qtdSessoes + 1) * sizeof(Sessao));
+    sessoes[qtdSessoes] = nova;
+    qtdSessoes++;
+
+    printf("Sessao cadastrada!\n");
 
 }
 
