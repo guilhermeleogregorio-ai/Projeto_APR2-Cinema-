@@ -552,7 +552,7 @@ void alterar_sessoes(){
         return;
     }
 
-    printf("Novo preco (R$ %2.f): ", sessoes[pos].preco);
+    printf("Novo preco (R$ %.2f): ", sessoes[pos].preco);
     scanf("%f", &sessoes[pos].preco);
 
     printf("Sessao alterada!\n");
