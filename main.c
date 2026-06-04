@@ -718,8 +718,8 @@ void submenuSalas(){
 
         switch(opc) {
             case 1:
-                listar_salas();
                 printf("Listando...\n");
+                listar_salas();
                 break;
             case 2:{
                 int cod, pos;
@@ -774,8 +774,8 @@ void submenuFilmes(){
 
         switch(opc) {
             case 1:
-                listar_Filmes();
                 printf("Listando...\n");
+                listar_Filmes();
                 break;
             case 2:{
                 int cod, pos;
@@ -828,8 +828,8 @@ void submenuSessoes(){
 
         switch(opc) {
             case 1:
-                listar_sessoes();
                 printf("Listando...\n");
+                listar_sessoes();
                 break;
             case 2:{
                 int cf, cs, pos;
@@ -872,37 +872,34 @@ void submenuSessoes(){
 
 void submenuRelatorios(){
     int opc;
-
-
-    do{
+    
+    do {
         printf("\n--- Relatorios ---");
-        printf("\n1. Listar todos os relatorios");
-        printf("\n2. Buscar relatorio");
-        printf("\n3. Incluir relatorio");
-        printf("\n4. Alterar relatorio");
-        printf("\n5. Excluir relatorio");
-        printf("\n6. Sair");
+        printf("\n1. Relatorio de Salas");
+        printf("\n2. Relatorio de Filmes");
+        printf("\n3. Relatorio de Sessoes");
+        printf("\n4. Voltar");
+        printf("\nOpcao: ");
+        
         scanf("%d", &opc);
-        while(getchar() != '\n');
-
+        
         switch(opc) {
             case 1:
-                printf("Listando...\n");
+                relatorio_salas();
                 break;
             case 2:
-                            
+                relatorio_filmes();
                 break;
-
             case 3:
-                
+                relatorio_sessoes();
                 break;
             case 4:
-                printf("Saindo...\n");
+                printf("Voltando...\n");
                 break;
+            default:
+                printf("Opcao invalida!\n");
         }
-    } while (opc != 6);
-
-    return ;
+    } while(opc != 4);
 }
 
 //Main
