@@ -298,6 +298,33 @@ int buscar_Filmes(int codigo){
 }
 
 void incluir_Filmes(){
+    Filme novo;
+
+    printf("Codigo: ");
+    scanf("%d", &novo.codigo);
+
+    if(buscar_Filmes(novo.codigo) != -1){
+        printf("Filme já existe!\n");
+        return;
+    }
+
+    printf("Nome: ");
+    scanf(" %[^\n]", novo.nome);
+
+    printf("Ano: ");
+    scanf("%d", &novo.ano);
+
+    printf("Diretor: ");
+    scanf(" %[^\n]", novo.diretor);
+
+    printf("Atores: ");
+    scanf("%[^\n]", novo.atores);
+
+    filmes = realloc(filmes, (qtdFilmes + 1) * sizeof(Filme));
+    filmes[qtdFilmes] = novo;
+    qtdFilmes++;
+
+    printf("Filme cadastrado!\n");
 
 }
 
