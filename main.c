@@ -587,16 +587,16 @@ void menu(){
 
         switch (opc){
             case 1:
-                submenuSalas(sistema);
+                submenuSalas();
                 break;
             case 2:
-                //submenuFilmes()
+                submenuFilmes();
                 break;
             case 3:
-                //submenuSessoes()
+                submenuSessoes();
                 break;
             case 4:
-                //submenuRelatorios()
+                submenuRelatorios();
                 break;
             case 5:
                 printf("Saindo...\n");
