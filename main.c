@@ -211,8 +211,10 @@ void incluir_salas(){
     printf("Nome: ");
     scanf(" %[^\n]", nova.nome);
 
-    printf("Capacidade: ");
-    scanf("%d", &nova.capacidade);
+    do {
+        printf("Capacidade: ");
+        scanf("%d", &nova.capacidade);
+    } while(nova.capacidade <= 0);
 
     printf("Tipo: ");
     scanf("%s", nova.tipo);
@@ -254,8 +256,10 @@ void alterar_salas(){
     printf("Nova capacidade (%d): ", salas[pos].capacidade);
     scanf("%d", &salas[pos].capacidade);
 
-    printf("Novo tipo (%s): ", salas[pos].tipo);
-    scanf("%s", salas[pos].tipo);
+    do {
+        printf("Nova capacidade (%d): ", salas[pos].capacidade);
+        scanf("%d", &salas[pos].capacidade);
+    } while(salas[pos].capacidade <= 0);
 
     printf("Novo acessivel (%d): ", salas[pos].acessivel);
     scanf("%d", &salas[pos].acessivel);
