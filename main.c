@@ -314,7 +314,7 @@ void excluir_salas(){
 
 
 
-void listar_Filmes(){
+void listar_filmes(){
     int i;
     if(qtdFilmes == 0){
         printf("Nenhum filme cadastrado\n");
@@ -340,7 +340,7 @@ int buscar_filmes(int codigo){
     return -1;
 }
 
-void incluir_Filmes(){
+void incluir_filmes(){
     Filme novo;
 
     printf("Codigo: ");
@@ -380,7 +380,7 @@ void incluir_Filmes(){
 
 }
 
-void alterar_Filmes(){
+void alterar_filmes(){
     int codigo, pos;
 
     printf("Codigo do filme: ");
@@ -855,10 +855,10 @@ void submenuFilmes(){
                 break;
             }
             case 3:
-                incluir_Filmes();
+                incluir_filmes();
                 break;
             case 4:
-                alterar_Filmes();
+                alterar_filmes();
                 break;
             case 5:
                 excluir_filmes();
