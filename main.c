@@ -85,17 +85,40 @@ void carregarDados(){
 
     arq = fopen("salas.dat" , "rb");
     if(arq != NULL){
+        Sala *temp;
+
         while(fread(&salaTemp, sizeof(Sala), 1 , arq)== 1){
-            salas = realloc(salas , (qtdSalas + 1) * sizeof(Sala));
-            salas[qtdSalas] = salaTemp;
-            qtdSalas++;
+
+        temp = realloc(salas, (qtdSalas + 1) * sizeof(Sala));
+
+        if(temp == NULL){
+            printf("Erro ao carregar salas!\n");
+            fclose(arq);
+            return;
+        }
+
+        salas = temp;
+        salas[qtdSalas] = salaTemp;
+        qtdSalas++;
         }
         fclose(arq);
     }
+
     arq = fopen("filmes.dat", "rb");
     if(arq != NULL) {
+        Filme *temp;
+
         while(fread(&filmeTemp, sizeof(Filme), 1, arq) == 1) {
-            filmes = realloc(filmes, (qtdFilmes + 1) * sizeof(Filme));
+
+            temp = realloc(filmes, (qtdFilmes + 1) * sizeof(Filme));
+
+            if(temp == NULL){
+                printf("Erro ao carregar salas!\n");
+                fclose(arq);
+                return;
+            }
+
+            filmes = temp;
             filmes[qtdFilmes] = filmeTemp;
             qtdFilmes++;
         }
@@ -103,8 +126,19 @@ void carregarDados(){
     }
     arq = fopen("sessoes.dat", "rb");
     if(arq != NULL){
+        Sessao *temp;
+
         while(fread(&sessaoTemp, sizeof(Sessao), 1 ,arq)== 1){
-            sessoes = realloc(sessoes , (qtdSessoes + 1) * sizeof(Sessao));
+
+            temp = realloc(sessoes , (qtdSessoes + 1) * sizeof(Sessao));
+
+            if(temp == NULL){
+                printf("Erro ao carregar salas!\n");
+                fclose(arq);
+                return;
+            }    
+            
+            sessoes = temp;
             sessoes[qtdSessoes] = sessaoTemp;
             qtdSessoes++;
         }
