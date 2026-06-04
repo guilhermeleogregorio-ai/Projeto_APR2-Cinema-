@@ -137,7 +137,7 @@ void salvarDados(){
 // SALAS
 
 
-void listar_salas(Sala *vSalas, int qtdSalas){
+void listar_salas(){
 int i;
     if(qtdSalas == 0){
         printf("Nenhuma sala cadastrada\n");
@@ -145,31 +145,31 @@ int i;
     }
     
     for(i = 0; i < qtdSalas; i++){
-        printf("\nCodigo: %d", vSalas[i].codigo);
-        printf("\nNome: %s", vSalas[i].nome);
-        printf("\nCapacidade: %d", vSalas[i].capacidade);
-        printf("\nTipo: %s", vSalas[i].tipo);
-        printf("\nAcessivel: %d\n", vSalas[i].acessivel);
+        printf("\nCodigo: %d", salas[i].codigo);
+        printf("\nNome: %s", salas[i].nome);
+        printf("\nCapacidade: %d", salas[i].capacidade);
+        printf("\nTipo: %s", salas[i].tipo);
+        printf("\nAcessivel: %d\n", salas[i].acessivel);
     }
 }
 
-int buscar_salas(Sala *vSalas, int qtdSalas, int codigo){
+int buscar_salas(int codigo){
 int i;
     for(i = 0 ; i <  qtdSalas; i++){
-        if(vSalas[i].codigo == codigo){
+        if(salas[i].codigo == codigo){
             return i;
         }
     }
     return -1;
 }
 
-void incluir_salas(Sala **vSalas, int *qtdSalas){
+void incluir_salas(){
     Sala nova;
 
     printf("Codigo: ");
     scanf("%d", &nova.codigo);
 
-    if(buscar_salas(*vSalas, *qtdSalas, nova.codigo) != -1){
+    if(buscar_salas(nova.codigo) != -1){
         printf("Sala já existe!\n");
         return;
     }
@@ -186,10 +186,9 @@ void incluir_salas(Sala **vSalas, int *qtdSalas){
     printf("Acessivel (1/0): ");
     scanf("%d", &nova.acessivel);
 
-    *vSalas = realloc(*vSalas, (*qtdSalas + 1) * sizeof(Sala));
-
-    (*vSalas)[*qtdSalas] = nova;
-    (*qtdSalas)++;
+    salas = realloc(salas, (qtdSalas + 1) * sizeof(Sala));
+    (salas)[qtdSalas] = nova;
+    qtdSalas++;
 
     printf("Sala cadastrada!\n");
 }
