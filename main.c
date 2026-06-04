@@ -112,6 +112,28 @@ void carregarDados(){
     }
 }
 
+void salvarDados(){
+    FILE *arq;
+
+    arq = fopen("salas.dat" , "wb");
+    if(arq != NULL){
+        fwrite(salas, sizeof(Sala), qtdSalas, arq);
+        fclose(arq);
+    }
+
+    arq = fopen("filmes.dat" , "wb");
+    if(arq != NULL){
+        fwrite(filmes, sizeof(Filme), qtdFilmes, arq);
+        fclose(arq);
+    }
+
+    arq = fopen("sessoes.dat", "wb");
+    if(arq != NULL){
+        fwrite(sessoes, sizeof(Sessao), qtdSessoes, arq);
+        fclose(arq);
+    }
+}
+
 // SALAS
 
 
