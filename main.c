@@ -318,7 +318,7 @@ void incluir_Filmes(){
     scanf(" %[^\n]", novo.diretor);
 
     printf("Atores: ");
-    scanf("%[^\n]", novo.atores);
+    scanf(" %[^\n]", novo.atores);
 
     filmes = realloc(filmes, (qtdFilmes + 1) * sizeof(Filme));
     filmes[qtdFilmes] = novo;
@@ -375,7 +375,7 @@ void excluir_filmes(){
 
 
     printf("\nDeseja excluir? (s/n): ");
-    scanf("%c", &confirm);
+    scanf(" %c", &confirm);
 
     if(confirm != 's' && confirm != 'S'){
         printf("Cancelado.\n");
@@ -447,10 +447,10 @@ void incluir_sessoes(){
     }
 
     printf("Data (DD/MM/AAAA):");
-    scanf("%[^\n]", nova.data);
+    scanf(" %[^\n]", nova.data);
 
     printf("Horario (HH:MM): ");
-    scanf("%[^\n]", nova.horario);
+    scanf(" %[^\n]", nova.horario);
 
     if(buscar_sessoes(nova.codFilme, nova.codSala, nova.data , nova.horario) != -1){
         printf("Sessão ja existe!\n");
@@ -473,7 +473,50 @@ void alterar_sessoes(){
 }
 
 void excluir_sessoes(){
+    int codFilme, codSala, pos , i;
+    char data[11], horario[6], confirm;
+
+    printf("Codigo do Filme: ");
+    scanf("%d", &codFilme);
+    printf("Codigo da Sala: ");
+    scanf("%d", &codSala);
+    printf("Data: ");
+    scanf(" %[^\n]", data);
+    printf("Horario: ");
+    scanf(" %[^\n]", horario);
     
+    pos = buscar_sessoes(codFilme, codSala, data, horario);
+    if(pos == -1){
+        printf("Sessao não encontrada!\n");
+        return;
+    }
+
+    printf("\nSessao encontrada:");
+    printf("\nFilme: %d | Sala: %d", sessoes[pos].codFilme, sessoes[pos].codSala);
+    printf("\nData: %s | Horario: %s", sessoes[pos].data , sessoes[pos].horario);
+
+    printf("\nDeseja excluir? (s/n): ");
+    scanf(" %c", &confirm);
+
+    if(confirm != 's' && confirm != 'S'){
+        printf("Cancelado.\n");
+        return;
+    }
+
+    for(i = pos; i < qtdSessoes - 1; i++){
+        sessoes[i] = sessoes[i + 1];
+    }
+    
+    qtdSessoes--;
+
+    if(qtdSessoes == 0){
+        free(sessoes);
+        sessoes = NULL;
+    }else {
+        sessoes = realloc(sessoes, qtdSessoes * sizeof(Sessao));
+    }
+
+    printf("Sessao excluida com sucesso!\n");
 }
 
 
