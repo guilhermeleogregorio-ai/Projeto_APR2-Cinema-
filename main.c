@@ -113,7 +113,7 @@ void carregarDados(){
             temp = realloc(filmes, (qtdFilmes + 1) * sizeof(Filme));
 
             if(temp == NULL){
-                printf("Erro ao carregar salas!\n");
+                printf("Erro ao carregar filmes!\n");
                 fclose(arq);
                 return;
             }
@@ -133,7 +133,7 @@ void carregarDados(){
             temp = realloc(sessoes , (qtdSessoes + 1) * sizeof(Sessao));
 
             if(temp == NULL){
-                printf("Erro ao carregar salas!\n");
+                printf("Erro ao carregar sessoes!\n");
                 fclose(arq);
                 return;
             }    
