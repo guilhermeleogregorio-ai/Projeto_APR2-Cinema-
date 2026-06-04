@@ -688,7 +688,7 @@ void relatorio_sessoes() {
     fprintf(arq, "Periodo: %s a %s\n\n", dataIni, dataFim);
     
     for(i = 0; i < qtdSessoes; i++) {
-        if(strcmp(sessoes[i].data, dataIni) <= 0 && strcmp(sessoes[i].data, dataFim) <= 0) {
+        if(strcmp(sessoes[i].data, dataIni) >= 0 && strcmp(sessoes[i].data, dataFim) <= 0) {
             posFilme = buscar_filmes(sessoes[i].codFilme);
             posSala = buscar_salas(sessoes[i].codSala);
             
