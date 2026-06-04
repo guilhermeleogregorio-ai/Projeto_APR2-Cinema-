@@ -329,6 +329,30 @@ void incluir_Filmes(){
 }
 
 void alterar_Filmes(){
+    int codigo, pos;
+
+    printf("Codigo do filme: ");
+    scanf("%d", &codigo);
+
+    pos = buscar_filmes(codigo);
+    if(pos == -1){
+        printf("Filme não encontrado!\n");
+        return;
+    }
+
+        printf("Novo nome (%s): ", filmes[pos].nome);
+        scanf("%[^\n]", filmes[pos].nome);
+
+        printf("Novo ano (%d): ", filmes[pos].ano);
+        scanf("%[^\n]", &filmes[pos].ano);
+
+        printf("Novo diretor (%s): ", filmes[pos].diretor);
+        scanf(" %[^\n]", filmes[pos].diretor);
+
+        printf("Novos atores (%s): ", filmes[pos].atores);
+        scanf(" %[^\n]", filmes[pos].atores);
+
+        printf("Filme alterado!\n");
 
 }
 
