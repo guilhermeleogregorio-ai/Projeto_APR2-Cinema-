@@ -579,8 +579,35 @@ void relatorio_salas(){
 
 }
 
-int buscar_relatorios(){
+void relatorio_filmes(){
+    FILE *arq;
+    int ano, i , encontrados = 0;
 
+    printf("A parti do ano:");
+    scanf("%d", &ano);
+
+    arq = fopen("relatorio_filmes.txt", "w");
+    fprintf(arq, "RELATORIO DE FILMES\n");
+    fprintf(arq, "Ano >= %d\n\n", ano);
+
+    for(i = 0; i < qtdFilmes; i++){
+        if(filmes[i].ano >= ano){
+            fprintf(arq, "Codigo: %d\n", filmes[i].codigo);
+            fprintf(arq, "Nome: %s\n", filmes[i].nome);
+            fprintf(arq, "Ano: %d\n", filmes[i].ano);
+            fprintf(arq, "Diretor: %s\n", filmes[i].diretor);
+            fprintf(arq, "Atores: %s\n", filmes[i].atores);
+            fprintf(arq, "-------------------\n");
+            encontrados++;
+        }
+    }
+    
+    if (encontrados == 0){
+        fprintf(arq, "Nenhum filme encontrado.\n");
+    }
+    
+    fclose(arq);
+    printf("Relatorio salvo em relatorio_filmrd.txt");
 }
 
 void incluir_relatorios(){
