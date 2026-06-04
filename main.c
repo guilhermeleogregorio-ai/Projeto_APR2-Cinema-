@@ -186,9 +186,18 @@ void incluir_salas(){
     printf("Acessivel (1/0): ");
     scanf("%d", &nova.acessivel);
 
-    salas = realloc(salas, (qtdSalas + 1) * sizeof(Sala));
+    Sala *temp;
+    temp = realloc(salas, (qtdSalas + 1) * sizeof(Sala));
+
+    if(temp != NULL){
+    printf("Erro ao alocar!\n");
+    return;
+    }
+
+    salas = temp;
     (salas)[qtdSalas] = nova;
     qtdSalas++;
+    
 
     printf("Sala cadastrada!\n");
 }
