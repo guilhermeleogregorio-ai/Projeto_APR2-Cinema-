@@ -621,7 +621,7 @@ void submenuSalas(){
         printf("\n3. Incluir sala");
         printf("\n4. Alterar sala");
         printf("\n5. Excluir sala");
-        printf("\n6. Voltar");
+        printf("\n6. Sair");
         printf("\nOpcao:\n ");
 
         scanf("%d", &opc);
@@ -739,28 +739,46 @@ void submenuSessoes(){
 
         switch(opc) {
             case 1:
-                // listar_sessoes(sessoes);
+                listar_sessoes();
                 printf("Listando...\n");
                 break;
-            case 2:
-                // buscar_sessoes(sessoes);
+            case 2:{
+                int cf, cs, pos;
+                char d[11], h[6];
+                printf("Codigo Filme: ");
+                scanf("%d", &cf);
+                printf("Codigo Sala: ");
+                scanf("%d", &cs);
+                printf("Data: ");
+                scanf(" %[^\n]", d);
+                printf("Horario: ");
+                scanf(" %[^\n]", h);
+                pos = buscar_sessoes(cf, cs, d, h);
+                if(pos == -1){
+                    printf("Sessao nao encontrada\n");
+                }else {
+                    printf("\nFilme: %d | Sala: %d", sessoes[pos].codFilme, sessoes[pos].codSala);
+                    printf("\nData: %s | Horario: %s", sessoes[pos].data , sessoes[pos].horario);
+                    printf("\nPreco: R$ %.2f\n", sessoes[pos].preco);
+                }
                 break;
+            }
             case 3:
-                // sessoes = incluir_sessoes(sessoes);
+                incluir_sessoes();
                 break;
             case 4:
-                // sessoes = alterar_sessoes(sessoes);
+                alterar_sessoes();
                 break;
             case 5:
-                // sessoes = excluir_sessoes(sessoes);
+                excluir_sessoes();
                 break;
             case 6:
                 printf("Saindo...\n");
                 break;
+            default:
+                printf("Opcao invalida!\n");
         }
     } while (opc != 6);
-
-    return;
 }
 
 void submenuRelatorios(){
