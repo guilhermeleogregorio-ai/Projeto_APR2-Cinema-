@@ -197,25 +197,25 @@ void alterar_salas(){
 
 }
 
-void excluir_salas(Sistema *sistema){
-    int codigo;
+void excluir_salas(){
+    int codigo, pos , i;
+    char confirm;
 
     printf("Digite o codigo da sala que deseja excluir\n");
     scanf("%d", &codigo);
 
-    int pos = buscar_salas(sistema->salas,sistema->qtdSalas, codigo);
-
+    pos = buscar_salas(codigo);
     if(pos == -1){
         printf("Sala não encontrada");
+        return;
     }
 
     // Mostrar dados
     printf("\nSala encontrada:");
-    printf("\nCodigo: %d", sistema->salas[pos].codigo);
-    printf("\nNome: %s\n", sistema->salas[pos].nome);
+    printf("\nCodigo: %d", salas[pos].codigo);
+    printf("\nNome: %s\n" , salas[pos].nome);
 
     //confirmação
-    char confirm;
     printf("\n Deseja excluir? (s/n)\n");
     scanf(" %c", &confirm);
 
@@ -224,19 +224,18 @@ void excluir_salas(Sistema *sistema){
         return;
     }
 
-    int i;
-    for(i = pos; i < sistema->qtdSalas -1; i++){
-        sistema->salas[i] = sistema->salas[i + 1];
+    for(i = pos; i < qtdSalas -1; i++){
+        salas[i] = salas[i + 1];
     }
 
-    sistema->qtdSalas--;
+    qtdSalas--;
 
     //realocar
-    if(sistema->qtdSalas == 0){
-        free(sistema->salas);
-        sistema->salas = NULL;
+    if(qtdSalas == 0){
+        free(salas);
+        salas = NULL;
     } else {
-        sistema->salas = realloc(sistema->salas, sistema->qtdSalas *sizeof(Sala));
+        salas = realloc(salas, qtdSalas *sizeof(Sala));
     }
 
     printf("Sala excluida com sucesso!\n");
