@@ -630,8 +630,9 @@ void submenuSalas(){
         switch(opc) {
             case 1:
                 listar_salas();
+                printf("Listando...\n");
                 break;
-            case 2:
+            case 2:{
                 int cod, pos;
                 printf("Codigo: ");
                 scanf("%d", &cod);
@@ -646,7 +647,7 @@ void submenuSalas(){
                     printf("\nAcessivel: %d\n", salas[pos].acessivel);
                 }
                 break;
-
+            }
             case 3:
                 incluir_salas();
                 break;
@@ -664,9 +665,7 @@ void submenuSalas(){
                 printf("Opcao invalida!\n");
         }
 
-    } while (opc != 5);
-
-    return;
+    } while (opc != 6);
 }
 
 void submenuFilmes(){
@@ -686,29 +685,41 @@ void submenuFilmes(){
 
         switch(opc) {
             case 1:
-                //listar_Filmes(filmes);
+                listar_Filmes();
                 printf("Listando...\n");
                 break;
-            case 2:
-                //buscar_Filmes(filmes);
+            case 2:{
+                int cod, pos;
+                printf("Codigo: ");
+                scanf("%d", &cod);
+                pos = buscar_Filmes(cod);
+                if(pos == -1){
+                    printf("Filme nao encontrado!\n");
+                }else {
+                    printf("\nCodigo: %d", filmes[pos].codigo);
+                    printf("\nNome: %s", filmes[pos].nome);
+                    printf("\nAno: %d", filmes[pos].ano);
+                    printf("\nDiretor: %s", filmes[pos].diretor);
+                    printf("\nAtores: %s\n", filmes[pos].atores);
+                }
                 break;
+            }
             case 3:
-                //filmes = incluir_Filmes(filmes);
+                incluir_Filmes();
                 break;
             case 4:
-                //filmes = alterar_Filmes(filmes);
+                alterar_Filmes();
                 break;
             case 5:
-                //filmes = excluir_filmes(filmes);
+                excluir_filmes();
                 break;
             case 6:
                 printf("Saindo...\n");
                 break;
+            default:
+            printf("Opcao invalida!\n");
         }
     } while (opc != 6);
-
-    return;
-
 }
 
 void submenuSessoes(){
