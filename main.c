@@ -206,7 +206,7 @@ void alterar_salas(){
     }
 
     printf("Novo nome (%s): ", salas[pos].nome);
-    scanf("%[^\n]", salas[pos].nome);
+    scanf(" %[^\n]", salas[pos].nome);
 
     printf("Nova capacidade (%d): ", salas[pos].capacidade);
     scanf("%d", &salas[pos].capacidade);
@@ -341,10 +341,10 @@ void alterar_Filmes(){
     }
 
         printf("Novo nome (%s): ", filmes[pos].nome);
-        scanf("%[^\n]", filmes[pos].nome);
+        scanf(" %[^\n]", filmes[pos].nome);
 
         printf("Novo ano (%d): ", filmes[pos].ano);
-        scanf("%[^\n]", &filmes[pos].ano);
+        scanf(" %[^\n]", &filmes[pos].ano);
 
         printf("Novo diretor (%s): ", filmes[pos].diretor);
         scanf(" %[^\n]", filmes[pos].diretor);
