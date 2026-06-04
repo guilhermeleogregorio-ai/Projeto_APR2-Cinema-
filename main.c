@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>    
 #include <stdlib.h> 
-// #include <data.h>
+
 
 
 // STRUCTS
@@ -610,13 +610,51 @@ void relatorio_filmes(){
     printf("Relatorio salvo em relatorio_filmrd.txt");
 }
 
-void incluir_relatorios(){
 
+
+void relatorio_sessoes() {
+    FILE *arq;
+    char dataIni[11], dataFim[11];
+    int i, encontrados = 0, posFilme, posSala;
+    
+    printf("Data inicial (DD/MM/AAAA): ");
+    scanf(" %[^\n]", dataIni);
+    printf("Data final (DD/MM/AAAA): ");
+    scanf(" %[^\n]", dataFim);
+    
+    arq = fopen("relatorio_sessoes.txt", "w");
+    fprintf(arq, "RELATORIO DE SESSOES\n");
+    fprintf(arq, "Periodo: %s a %s\n\n", dataIni, dataFim);
+    
+    for(i = 0; i < qtdSessoes; i++) {
+        if(strcmp(sessoes[i].data, dataIni) >= 0 && strcmp(sessoes[i].data, dataFim) <= 0) {
+            posFilme = buscar_filmes(sessoes[i].codFilme);
+            posSala = buscar_salas(sessoes[i].codSala);
+            
+            if(posFilme != -1 && posSala != -1) {
+                fprintf(arq, "Codigo Filme: %d\n", sessoes[i].codFilme);
+                fprintf(arq, "Nome Filme: %s\n", filmes[posFilme].nome);
+                fprintf(arq, "Atores: %s\n", filmes[posFilme].atores);
+                fprintf(arq, "Codigo Sala: %d\n", sessoes[i].codSala);
+                fprintf(arq, "Nome Sala: %s\n", salas[posSala].nome);
+                fprintf(arq, "Data: %s\n", sessoes[i].data);
+                fprintf(arq, "Horario: %s\n", sessoes[i].horario);
+                fprintf(arq, "Preco: R$ %.2f\n", sessoes[i].preco);
+                fprintf(arq, "-------------------\n");
+                encontrados++;
+            }
+        }
+    }
+    
+    if(encontrados == 0) {
+        fprintf(arq, "Nenhuma sessao encontrada.\n");
+    }
+    
+    fclose(arq);
+    printf("Relatorio salvo em relatorio_sessoes.txt\n");
 }
 
-
 // MENU
-
 
 void menu(){
     int opc;
