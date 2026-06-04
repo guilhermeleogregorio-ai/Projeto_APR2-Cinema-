@@ -272,7 +272,19 @@ void excluir_salas(){
 
 
 void listar_Filmes(){
+    int i;
+    if(qtdFilmes == 0){
+        printf("Nenhum filme cadastrado\n");
+        return;
+    }
 
+    for(i = 0 ; i < qtdFilmes; i++){
+        printf("\nCodigo: %d", filmes[i].codigo);
+        printf("\nNome: %s", filmes[i].nome);
+        printf("\nAno: %d", filmes[i].ano);
+        printf("\nDiretor: %s", filmes[i].diretor);
+        printf("\nAtores: %s\n", filmes[i].atores);
+    }
 }
 
 int buscar_Filmes(){
