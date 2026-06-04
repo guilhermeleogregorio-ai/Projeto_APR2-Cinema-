@@ -329,7 +329,15 @@ void incluir_Filmes(){
     printf("Atores: ");
     scanf(" %[^\n]", novo.atores);
 
-    filmes = realloc(filmes, (qtdFilmes + 1) * sizeof(Filme));
+    Filme *temp;
+    
+    temp = realloc(filmes, (qtdFilmes + 1) * sizeof(Filme));
+
+    if(temp == NULL){
+        printf("Erro ao alocar:\n");
+        return;
+    }
+    
     filmes[qtdFilmes] = novo;
     qtdFilmes++;
 
