@@ -346,7 +346,7 @@ void excluir_salas(){
 
 
 void listar_filmes(){
-    int i;
+    int i, j;
     if(qtdFilmes == 0){
         printf("Nenhum filme cadastrado\n");
         return;
@@ -357,7 +357,10 @@ void listar_filmes(){
         printf("\nNome: %s", filmes[i].nome);
         printf("\nAno: %d", filmes[i].ano);
         printf("\nDiretor: %s", filmes[i].diretor);
-        printf("\nAtores: %s\n", filmes[i].atores);
+
+        printf("\nAtores:\n");
+        for(j = 0; j < filmes[i].qtdAtores; j++)
+        printf("\n %s\n", filmes[i].atores[j]);
     }
 }
 
