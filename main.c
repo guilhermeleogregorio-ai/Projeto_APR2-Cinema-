@@ -763,8 +763,8 @@ void relatorio_sessoes() {
 
                 intParaStringData(sessoes[i].data, dataStr);
                 intParaStringHorario(sessoes[i].horario, horarioStr);
-                fprintf(arq, "Data: %s\n", sessoes[i].data);
-                fprintf(arq, "Horario: %s\n", sessoes[i].horario);
+                fprintf(arq, "Data: %s\n", dataStr);
+                fprintf(arq, "Horario: %s\n", horarioStr);
 
                 fprintf(arq, "Preco: R$ %.2f\n", sessoes[i].preco);
                 fprintf(arq, "-------------------\n");
