@@ -94,7 +94,7 @@ void alterar_filmes();
 void excluir_filmes();
 
 void listar_sessoes();
-int buscar_sessoes(int codFilme, int codSala, char*data, char *horario);
+int buscar_sessoes(int codFilme, int codSala, int data, int horario);
 void incluir_sessoes();
 void alterar_sessoes();
 void excluir_sessoes();
@@ -571,18 +571,23 @@ void incluir_sessoes(){
 
 void alterar_sessoes(){
     int codFilme, codSala, pos;
-    char data[11], horario[6];
+    char dataStr[11], horarioStr[6];
+    int dataInt, horarioInt;
 
     printf("Codigo do filme: ");
     scanf("%d", &codFilme);
     printf("Codigo da Sala: ");
     scanf("%d", &codSala);
     printf("Data: ");
-    scanf(" %[^\n]", data);
+    scanf(" %[^\n]", dataStr);
     printf("Horario: ");
-    scanf(" %[^\n]", horario);
+    scanf(" %[^\n]", horarioStr);
 
-    pos = buscar_sessoes(codFilme, codSala, data, horario);
+// CONVERTE PARA INTEIRO ANTES DE BUSCAR
+    dataInt = stringDataParaInt(dataStr);
+    horarioInt = stringHorarioParaInt(horarioStr);
+
+    pos = buscar_sessoes(codFilme, codSala, dataInt, horarioInt);
     if(pos == -1){
         printf("Sessao não encontrada!\n");
         return;
