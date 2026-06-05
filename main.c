@@ -733,6 +733,7 @@ void relatorio_sessoes() {
     char dataIni[11], dataFim[11];
     int i, encontrados = 0, posFilme, posSala;
     int dataIniInt, dataFimInt, dataSessaoInt;
+    char dataStr[11], horarioStr[6];
     
     printf("Data inicial (DD/MM/AAAA): ");
     scanf(" %[^\n]", dataIni);
@@ -759,8 +760,12 @@ void relatorio_sessoes() {
                 fprintf(arq, "Atores: %s\n", filmes[posFilme].atores);
                 fprintf(arq, "Codigo Sala: %d\n", sessoes[i].codSala);
                 fprintf(arq, "Nome Sala: %s\n", salas[posSala].nome);
+
+                intParaStringData(sessoes[i].data, dataStr);
+                intParaStringHorario(sessoes[i].horario, horarioStr);
                 fprintf(arq, "Data: %s\n", sessoes[i].data);
                 fprintf(arq, "Horario: %s\n", sessoes[i].horario);
+                
                 fprintf(arq, "Preco: R$ %.2f\n", sessoes[i].preco);
                 fprintf(arq, "-------------------\n");
                 encontrados++;
