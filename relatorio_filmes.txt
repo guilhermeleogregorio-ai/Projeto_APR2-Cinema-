@@ -1,0 +1,9 @@
+RELATORIO DE FILMES
+Ano >= 1900
+
+Codigo: 200
+Nome: Caça
+Ano: 1990
+Diretor: Pedro
+Atores: Barbie
+-------------------
