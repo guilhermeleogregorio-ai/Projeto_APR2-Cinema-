@@ -504,7 +504,7 @@ void listar_sessoes(){
 int buscar_sessoes(int codFilme, int codSala, char *data, char*horario){
     int i;
     for(i = 0; i < qtdSessoes; i++){
-        if(sessoes[i].codFilme ==  codFilme && sessoes[i].codSala == codSala && strcmp(sessoes[i].data, data) == 0 && strcmp(sessoes[i].horario, horario) == 0){
+        if(sessoes[i].codFilme ==  codFilme && sessoes[i].codSala == codSala && sessoes[i].data == data && sessoes[i].horario == horario){
             return i;
         }
     }
