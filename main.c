@@ -749,7 +749,7 @@ void relatorio_sessoes() {
     fprintf(arq, "Periodo: %s a %s\n\n", dataIni, dataFim);
     
     for(i = 0; i < qtdSessoes; i++) {
-        dataSessaoInt = stringDataParaInt(sessoes[i].data);
+        dataSessaoInt = sessoes[i].data;
         if(dataSessaoInt >= dataIniInt && dataSessaoInt <= dataFimInt) {
             posFilme = buscar_filmes(sessoes[i].codFilme);
             posSala = buscar_salas(sessoes[i].codSala);
