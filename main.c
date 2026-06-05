@@ -921,7 +921,7 @@ void submenuFilmes(){
                 listar_filmes();
                 break;
             case 2:{
-                int cod, pos;
+                int cod, pos, i;
                 printf("Codigo: ");
                 scanf("%d", &cod);
                 pos = buscar_filmes(cod);
@@ -932,8 +932,11 @@ void submenuFilmes(){
                     printf("\nNome: %s", filmes[pos].nome);
                     printf("\nAno: %d", filmes[pos].ano);
                     printf("\nDiretor: %s", filmes[pos].diretor);
-                    printf("\nAtores: %s\n", filmes[pos].atores);
-                }
+                    printf("\nAtores:\n");
+                    for(int i = 0; i < filmes[pos].qtdAtores; i++){
+                        printf("- %s\n", filmes[pos].atores[i]);
+                    }
+                                    }
                 break;
             }
             case 3:
