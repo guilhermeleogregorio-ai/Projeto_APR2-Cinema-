@@ -602,26 +602,36 @@ void alterar_sessoes(){
 
 void excluir_sessoes(){
     int codFilme, codSala, pos , i;
-    char data[11], horario[6], confirm;
+    char dataStr[11], horarioStr[6], confirm;
+    int dataInt, horarioInt;
 
     printf("Codigo do Filme: ");
     scanf("%d", &codFilme);
     printf("Codigo da Sala: ");
     scanf("%d", &codSala);
     printf("Data: ");
-    scanf(" %[^\n]", data);
+    scanf(" %[^\n]", dataStr);
     printf("Horario: ");
-    scanf(" %[^\n]", horario);
-    
-    pos = buscar_sessoes(codFilme, codSala, data, horario);
+    scanf(" %[^\n]", horarioStr);
+
+    //CONVERTE PARA INTEIRO ANTE DE BUSCAR
+    dataInt = stringDataParaInt(dataStr);
+    horarioInt = stringHorarioParaInt(horarioStr);
+
+
+    pos = buscar_sessoes(codFilme, codSala, dataInt, horarioInt);
     if(pos == -1){
         printf("Sessao não encontrada!\n");
         return;
     }
 
+    //CONVERTE DE VOLTA PARA STRING PARA EXIBIÇÃO
+    intParaStringData(sessoes[pos].data, dataStr);
+    intParaStringHorario(sessoes[pos].horario, horarioStr);
+
     printf("\nSessao encontrada:");
     printf("\nFilme: %d | Sala: %d", sessoes[pos].codFilme, sessoes[pos].codSala);
-    printf("\nData: %s | Horario: %s", sessoes[pos].data , sessoes[pos].horario);
+    printf("\nData: %s | Horario: %s", dataStr, horarioStr);
 
     printf("\nDeseja excluir? (s/n): ");
     scanf(" %c", &confirm);
