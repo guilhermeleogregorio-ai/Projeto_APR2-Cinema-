@@ -499,7 +499,7 @@ void listar_sessoes(){
         intParaStringData(sessoes[i].data, dataSrt);
         intParaStringHorario(sessoes[i].horario, horarioStr);
         printf("\nFilme: %d | Sala: %d", sessoes[i].codFilme, sessoes[i].codSala);
-        printf("\nData: %s | horario: %s", sessoes[i].data, sessoes[i].horario);
+        printf("\nData: %s | horario: %s", dataSrt, horarioStr);
         printf("\nPreco: R$ %.2f\n", sessoes[i].preco);
     }
 
