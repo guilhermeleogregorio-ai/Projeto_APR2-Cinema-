@@ -513,6 +513,7 @@ int buscar_sessoes(int codFilme, int codSala, char *data, char*horario){
 
 void incluir_sessoes(){
     Sessao nova;
+    char dataStr[11], horaioStr[6];
 
     printf("Codigo do filme: ");
     scanf("%d", &nova.codFilme);
@@ -531,10 +532,13 @@ void incluir_sessoes(){
     }
 
     printf("Data (DD/MM/AAAA):");
-    scanf(" %[^\n]", nova.data);
+    scanf(" %[^\n]", dataStr);
 
     printf("Horario (HH:MM): ");
-    scanf(" %[^\n]", nova.horario);
+    scanf(" %[^\n]",horaioStr);
+
+    nova.data = stringDataParaInt(dataStr);
+    nova.horario = stringHorarioParaInt(horaioStr);
 
     if(buscar_sessoes(nova.codFilme, nova.codSala, nova.data , nova.horario) != -1){
         printf("Sessão ja existe!\n");
