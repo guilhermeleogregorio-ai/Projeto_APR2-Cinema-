@@ -424,7 +424,7 @@ void incluir_filmes(){
 }
 
 void alterar_filmes(){
-    int codigo, pos;
+    int codigo, pos, i;
 
     printf("Codigo do filme: ");
     scanf("%d", &codigo);
@@ -444,8 +444,13 @@ void alterar_filmes(){
         printf("Novo diretor (%s): ", filmes[pos].diretor);
         scanf(" %[^\n]", filmes[pos].diretor);
 
-        printf("Novos atores (%s): ", filmes[pos].atores);
-        scanf(" %[^\n]", filmes[pos].atores);
+        printf("Quantidade de atores: ");
+        scanf("%d", &filmes[pos].qtdAtores);
+
+        for(i = 0; i < filmes[pos].qtdAtores; i++){
+            printf("Ator %d: ", i + 1);
+            scanf(" %[^\n]", filmes[pos].atores[i]);
+        }
 
         printf("Filme alterado!\n");
 
