@@ -717,18 +717,24 @@ void relatorio_sessoes() {
     FILE *arq;
     char dataIni[11], dataFim[11];
     int i, encontrados = 0, posFilme, posSala;
+    int dataIniInt, dataFimInt, dataSessaoInt;
     
     printf("Data inicial (DD/MM/AAAA): ");
     scanf(" %[^\n]", dataIni);
     printf("Data final (DD/MM/AAAA): ");
     scanf(" %[^\n]", dataFim);
+
+    //CONVERTE AS DATA DIGITADAS PARA INTEIRO
+    dataIniInt = stringDataParaInt(dataIni);
+    dataFimInt = stringDataParaInt(dataFim);
     
     arq = fopen("relatorio_sessoes.txt", "w");
     fprintf(arq, "RELATORIO DE SESSOES\n");
     fprintf(arq, "Periodo: %s a %s\n\n", dataIni, dataFim);
     
     for(i = 0; i < qtdSessoes; i++) {
-        if(strcmp(sessoes[i].data, dataIni) >= 0 && strcmp(sessoes[i].data, dataFim) <= 0) {
+        dataSessaoInt = stringDataParaInt(sessoes[i].data);
+        if(dataSessaoInt >= dataIniInt && dataSessaoInt <= dataFimInt) {
             posFilme = buscar_filmes(sessoes[i].codFilme);
             posSala = buscar_salas(sessoes[i].codSala);
             
