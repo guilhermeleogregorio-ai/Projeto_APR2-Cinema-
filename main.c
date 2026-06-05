@@ -728,7 +728,11 @@ void relatorio_filmes(){
             fprintf(arq, "Nome: %s\n", filmes[i].nome);
             fprintf(arq, "Ano: %d\n", filmes[i].ano);
             fprintf(arq, "Diretor: %s\n", filmes[i].diretor);
-            fprintf(arq, "Atores: %s\n", filmes[i].atores);
+            fprintf(arq, "Atores:\n");
+
+            for(int j = 0; j < filmes[i].qtdAtores; j++){
+                fprintf(arq, "- %s\n", filmes[i].atores[j]);
+            }
             fprintf(arq, "-------------------\n");
             encontrados++;
         }
