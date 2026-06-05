@@ -544,7 +544,7 @@ void incluir_sessoes(){
     nova.data = stringDataParaInt(dataStr);
     nova.horario = stringHorarioParaInt(horarioStr);
 
-    if(buscar_sessoes(nova.codFilme, nova.codSala, dataStr , horarioStr) != -1){
+    if(buscar_sessoes(nova.codFilme, nova.codSala, nova.data , nova.horario) != -1){
         printf("Sessão ja existe!\n");
         return;
     }
@@ -765,7 +765,7 @@ void relatorio_sessoes() {
                 intParaStringHorario(sessoes[i].horario, horarioStr);
                 fprintf(arq, "Data: %s\n", sessoes[i].data);
                 fprintf(arq, "Horario: %s\n", sessoes[i].horario);
-                
+
                 fprintf(arq, "Preco: R$ %.2f\n", sessoes[i].preco);
                 fprintf(arq, "-------------------\n");
                 encontrados++;
