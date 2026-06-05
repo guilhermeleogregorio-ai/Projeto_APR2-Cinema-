@@ -956,6 +956,10 @@ void submenuSessoes(){
             case 2:{
                 int cf, cs, pos;
                 char d[11], h[6];
+                int dataInt, horarioInt;
+                char dataStr[11], horarioStr[6];
+
+
                 printf("Codigo Filme: ");
                 scanf("%d", &cf);
                 printf("Codigo Sala: ");
@@ -964,12 +968,20 @@ void submenuSessoes(){
                 scanf(" %[^\n]", d);
                 printf("Horario: ");
                 scanf(" %[^\n]", h);
-                pos = buscar_sessoes(cf, cs, d, h);
+
+                //CONVERTE APRA INTEIRO
+                dataInt = stringDataParaInt(d);
+                horarioInt = stringHorarioParaInt(h);
+
+                pos = buscar_sessoes(cf, cs, dataInt, horarioInt);
                 if(pos == -1){
                     printf("Sessao nao encontrada\n");
                 }else {
+                    intParaStringData(sessoes[pos].data, dataStr);
+                    intParaStringHorario(sessoes[pos].horario, horarioStr);
+
                     printf("\nFilme: %d | Sala: %d", sessoes[pos].codFilme, sessoes[pos].codSala);
-                    printf("\nData: %s | Horario: %s", sessoes[pos].data , sessoes[pos].horario);
+                    printf("\nData: %s | Horario: %s", dataStr, horarioStr);
                     printf("\nPreco: R$ %.2f\n", sessoes[pos].preco);
                 }
                 break;
