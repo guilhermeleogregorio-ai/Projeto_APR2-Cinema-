@@ -777,7 +777,7 @@ void relatorio_sessoes() {
             if(posFilme != -1 && posSala != -1) {
                 fprintf(arq, "Codigo Filme: %d\n", sessoes[i].codFilme);
                 fprintf(arq, "Nome Filme: %s\n", filmes[posFilme].nome);
-                
+
                 fprintf(arq, "Atores:\n");
                 for(int j = 0; j < filmes[posFilme].qtdAtores; j++){
                     fprintf(arq, "- %s\n", filmes[posFilme].atores[j]);
@@ -920,7 +920,7 @@ void submenuFilmes(){
         printf("\n3. Incluir filme");
         printf("\n4. Alterar filme");
         printf("\n5. Excluir filme");
-        printf("\n6. Sair");
+        printf("\n6. Sair\n");
         scanf("%d", &opc);
         while(getchar() != '\n');   
 
@@ -977,7 +977,7 @@ void submenuSessoes(){
         printf("\n3. Incluir sessao");
         printf("\n4. Alterar sessao");
         printf("\n5. Excluir sessao");
-        printf("\n6. Sair");
+        printf("\n6. Sair\n");
         scanf("%d", &opc);
         while(getchar() != '\n');
 
@@ -1045,7 +1045,7 @@ void submenuRelatorios(){
         printf("\n1. Relatorio de Salas");
         printf("\n2. Relatorio de Filmes");
         printf("\n3. Relatorio de Sessoes");
-        printf("\n4. Voltar");
+        printf("\n4. Voltar\n");
         printf("\nOpcao: ");
         
         scanf("%d", &opc);
