@@ -376,6 +376,7 @@ int buscar_filmes(int codigo){
 
 void incluir_filmes(){
     Filme novo;
+    int i;
 
     printf("Codigo: ");
     scanf("%d", &novo.codigo);
@@ -393,6 +394,14 @@ void incluir_filmes(){
 
     printf("Diretor: ");
     scanf(" %[^\n]", novo.diretor);
+
+    printf("Quantidade de atores: ");
+    scanf("%d", &novo.qtdAtores);
+
+    for(i = 0; i < novo.qtdAtores; i++){
+        printf("Ator %d: ", i + 1);
+        scanf(" %[^\n]", novo.atores[i]);
+    }
 
     printf("Atores: ");
     scanf(" %[^\n]", novo.atores);
