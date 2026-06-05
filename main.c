@@ -31,33 +31,6 @@ typedef struct {
     float preco;
 } Sessao;
 
-// Funções auxiliares
-int stringDataParaInt(char *dataStr) {
-    int dia, mes, ano;
-    sscanf(dataStr, "%d/%d/%d", &dia, &mes, &ano);
-    return ano * 10000 + mes * 100 + dia;
-}
-// Converte int para "DD/MM/AAAA" (para exibir)
-void intParaStringData(int dataInt, char *saida) {
-    int ano = dataInt / 10000;
-    int mes = (dataInt % 10000) / 100;
-    int dia = dataInt % 100;
-    sprintf(saida, "%02d/%02d/%04d", dia, mes, ano);
-}
-
-// Converte "HH:MM" para int (ex: 20:00 -> 2000)
-int stringHorarioParaInt(char *horarioStr) {
-    int hora, minuto;
-    sscanf(horarioStr, "%d:%d", &hora, &minuto);
-    return hora * 100 + minuto;
-}
-
-// Converte int para "HH:MM" (para exibir)
-void intParaStringHorario(int horarioInt, char *saida) {
-    int hora = horarioInt / 100;
-    int minuto = horarioInt % 100;
-    sprintf(saida, "%02d:%02d", hora, minuto);
-}
 
 // Variávies globais
 Sala *salas= NULL;
