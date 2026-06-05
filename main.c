@@ -777,7 +777,12 @@ void relatorio_sessoes() {
             if(posFilme != -1 && posSala != -1) {
                 fprintf(arq, "Codigo Filme: %d\n", sessoes[i].codFilme);
                 fprintf(arq, "Nome Filme: %s\n", filmes[posFilme].nome);
-                fprintf(arq, "Atores: %s\n", filmes[posFilme].atores);
+                
+                fprintf(arq, "Atores:\n");
+                for(int j = 0; j < filmes[posFilme].qtdAtores; j++){
+                    fprintf(arq, "- %s\n", filmes[posFilme].atores[j]);
+                }
+
                 fprintf(arq, "Codigo Sala: %d\n", sessoes[i].codSala);
                 fprintf(arq, "Nome Sala: %s\n", salas[posSala].nome);
 
