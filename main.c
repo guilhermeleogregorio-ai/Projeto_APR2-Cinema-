@@ -20,7 +20,9 @@ typedef struct {
     char nome[100];   
     int ano;
     char diretor[50];
-    char atores[200]; // Armazena vários nomes como uma string longa
+
+    int qtdAtores;
+    char atores[10][50]; // vetor de strings
 } Filme;
 
 typedef struct {
@@ -280,9 +282,6 @@ void alterar_salas(){
 
     printf("Novo nome (%s): ", salas[pos].nome);
     scanf(" %[^\n]", salas[pos].nome);
-
-    printf("Nova capacidade (%d): ", salas[pos].capacidade);
-    scanf("%d", &salas[pos].capacidade);
 
     do {
         printf("Nova capacidade (%d): ", salas[pos].capacidade);
