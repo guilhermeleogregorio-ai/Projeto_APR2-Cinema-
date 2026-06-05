@@ -488,12 +488,16 @@ void excluir_filmes(){
 
 void listar_sessoes(){
     int i;
+    char dataSrt[11], horarioStr[6];
+
     if(qtdSessoes == 0){
         printf("Nenhuma sessao cadastrada\n");
         return;
     }
 
     for(i = 0 ; i < qtdSessoes ; i++){
+        intParaStringData(sessoes[i].data, dataSrt);
+        intParaStringHorario(sessoes[i].horario, horarioStr);
         printf("\nFilme: %d | Sala: %d", sessoes[i].codFilme, sessoes[i].codSala);
         printf("\nData: %s | horario: %s", sessoes[i].data, sessoes[i].horario);
         printf("\nPreco: R$ %.2f\n", sessoes[i].preco);
