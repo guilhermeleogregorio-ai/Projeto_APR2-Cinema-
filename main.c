@@ -561,7 +561,15 @@ void incluir_sessoes(){
     scanf(" %[^\n]",horarioStr);
 
     nova.data = stringDataParaInt(dataStr);
+    if(nova.data == -1){
+        printf("Data invalida! Use DD/MM/AAAA\n");
+        return;
+    }
     nova.horario = stringHorarioParaInt(horarioStr);
+    if(nova.data == -1){
+        printf("Data invalida! Use DD/MM/AAAA\n");
+        return;
+    }
 
     if(buscar_sessoes(nova.codFilme, nova.codSala, nova.data , nova.horario) != -1){
         printf("Sessão ja existe!\n");
