@@ -53,7 +53,10 @@ void intParaStringData(int dataInt, char *saida) {
 // Converte "HH:MM" para int (ex: 20:00 -> 2000)
 int stringHorarioParaInt(char *horarioStr) {
     int hora, minuto;
-    sscanf(horarioStr, "%d:%d", &hora, &minuto);
+
+    if(sscanf(horarioStr, "%d:%d", &hora, &minuto)!=2){
+        return -1;
+    }
     return hora * 100 + minuto;
 }
 
