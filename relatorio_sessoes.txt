@@ -1,4 +1,14 @@
 RELATORIO DE SESSOES
-Periodo: 04/12/2000 a 10/20/2500
+Periodo: 0409200 a 040920020
 
-Nenhuma sessao encontrada.
+Codigo Filme: 10
+Nome Filme: Oi
+Atores:
+- 1
+- Joao
+Codigo Sala: 10
+Nome Sala: Grande
+Data: 5:28
+Horario: 2284415:28
+Preco: R$ 10.00
+-------------------

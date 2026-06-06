@@ -36,7 +36,10 @@ typedef struct {
 // Funções auxiliares
 int stringDataParaInt(char *dataStr) {
     int dia, mes, ano;
-    sscanf(dataStr, "%d/%d/%d", &dia, &mes, &ano);
+    
+    if(sscanf(dataStr, "%d/%d/%d", &dia, &mes, &ano)!=3){
+        return -1;
+    }
     return ano * 10000 + mes * 100 + dia;
 }
 // Converte int para "DD/MM/AAAA" (para exibir)
@@ -395,16 +398,13 @@ void incluir_filmes(){
     printf("Diretor: ");
     scanf(" %[^\n]", novo.diretor);
 
-    printf("Quantidade de atores: ");
+    printf("Quantidade de atores : ");
     scanf("%d", &novo.qtdAtores);
 
     for(i = 0; i < novo.qtdAtores; i++){
         printf("Ator %d: ", i + 1);
         scanf(" %[^\n]", novo.atores[i]);
     }
-
-    printf("Atores: ");
-    scanf(" %[^\n]", novo.atores);
 
     Filme *temp;
     
@@ -945,7 +945,7 @@ void submenuFilmes(){
                     for(int i = 0; i < filmes[pos].qtdAtores; i++){
                         printf("- %s\n", filmes[pos].atores[i]);
                     }
-                                    }
+                    }
                 break;
             }
             case 3:
