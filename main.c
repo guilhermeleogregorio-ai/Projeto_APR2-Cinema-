@@ -689,7 +689,12 @@ void excluir_sessoes(){
         free(sessoes);
         sessoes = NULL;
     }else {
-        sessoes = realloc(sessoes, qtdSessoes * sizeof(Sessao));
+        Sessao *temp;
+        temp = realloc(sessoes, qtdSessoes * sizeof(Sessao));
+
+        if(temp != NULL){
+            sessoes = temp;
+        }
     }
 
     printf("Sessao excluida com sucesso!\n");
