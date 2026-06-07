@@ -406,8 +406,10 @@ void incluir_filmes(){
     printf("Diretor: ");
     scanf(" %[^\n]", novo.diretor);
 
-    printf("Quantidade de atores : ");
-    scanf("%d", &novo.qtdAtores);
+    do{
+        printf("Quantidade de atores (1 a 10): ");
+        scanf("%d", &novo.qtdAtores);
+    }while(novo.qtdAtores < 1 || novo.qtdAtores > 10);
 
     for(i = 0; i < novo.qtdAtores; i++){
         printf("Ator %d: ", i + 1);
