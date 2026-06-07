@@ -500,7 +500,12 @@ void excluir_filmes(){
         free(filmes);
         filmes = NULL;
     }else {
-        filmes = realloc(filmes, qtdFilmes * sizeof(Filme));
+        Filme *temp;
+        temp = realloc(filmes, qtdFilmes * sizeof(Filme));
+
+        if(temp != NULL){
+            filmes = temp;
+        }
     }
     
     printf("Filme excluido com sucesso!\n");
