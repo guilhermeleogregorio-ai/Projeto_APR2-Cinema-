@@ -706,19 +706,19 @@ void excluir_sessoes(){
 void relatorio_salas(){
     FILE *arq;
     char tipo[20];
-    int capacidade, i , encontrados = 0 ;
+    int capacidadeMinima, i , encontrados = 0 ;
 
     printf("Tipo de exibicao: ");
     scanf(" %[^\n]", tipo);
     printf("Capacidade minima: ");
-    scanf("%d", &capacidade);
+    scanf("%d", &capacidadeMinima);
 
     arq = fopen("relatorio_salas.txt", "w");
     fprintf(arq, "RELATORIO DE SALAS\n");
-    fprintf(arq, "Tipo: %s | Capacidade > %d\n\n", tipo, capacidade);
+    fprintf(arq, "Tipo: %s | Capacidade Minima > %d\n\n", tipo, capacidadeMinima);
 
     for(i = 0; i < qtdSalas; i++){
-        if(strcmp(salas[i].tipo, tipo) == 0 && salas[i].capacidade > capacidade){
+        if(strcmp(salas[i].tipo, tipo) == 0 && salas[i].capacidade > capacidadeMinima){
             fprintf(arq, "Codigo: %d\n", salas[i].codigo);
             fprintf(arq, "Nome: %s\n", salas[i].nome);
             fprintf(arq, "Capacidade: %d\n", salas[i].capacidade);
