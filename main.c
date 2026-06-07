@@ -339,7 +339,12 @@ void excluir_salas(){
         free(salas);
         salas = NULL;
     } else {
-        salas = realloc(salas, qtdSalas *sizeof(Sala));
+        Sala *temp;
+        temp = realloc(salas, qtdSalas *sizeof(Sala));
+
+        if(temp != NULL){
+            salas = temp;
+        }
     }
 
     printf("Sala excluida com sucesso!\n");
@@ -565,7 +570,7 @@ void incluir_sessoes(){
         printf("Data invalida! Use DD/MM/AAAA\n");
         return;
     }
-    
+
     nova.horario = stringHorarioParaInt(horarioStr);
     if(nova.horario == -1){
         printf("Horario invalido! Use HH:MM\n");
