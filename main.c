@@ -67,6 +67,19 @@ void intParaStringHorario(int horarioInt, char *saida) {
     sprintf(saida, "%02d:%02d", hora, minuto);
 }
 
+//Verifica se filme possui sessão ativa
+int filmePossuiSessoes(int codFilme){
+    int i;
+
+    for(i = 0; i < qtdSessoes; i++){
+        if(sessoes[i].codFilme == codFilme){
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
 
 // Variávies globais
 Sala *salas= NULL;
