@@ -94,12 +94,14 @@ int buscar_salas(int codigo);
 void incluir_salas();
 void alterar_salas();
 void excluir_salas();
+int salaPossuiSessoes(int codSala);
 
 void listar_filmes();
 int buscar_filmes(int codigo) ;
 void incluir_filmes();
 void alterar_filmes();
 void excluir_filmes();
+int filmePossuiSessoes(int codFilme);
 
 void listar_sessoes();
 int buscar_sessoes(int codFilme, int codSala, int data, int horario);
