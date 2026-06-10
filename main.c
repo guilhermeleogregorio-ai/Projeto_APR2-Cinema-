@@ -80,6 +80,19 @@ int filmePossuiSessoes(int codFilme){
     return 0;
 }
 
+//Verifica se filme possui sessão ativa
+int salaPossuiSessoes(int codSala){
+    int i;
+
+    for(i = 0; i < qtdSessoes; i++){
+        if(sessoes[i].codSala == codSala){
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
 
 // Variávies globais
 Sala *salas= NULL;
@@ -326,6 +339,11 @@ void excluir_salas(){
     pos = buscar_salas(codigo);
     if(pos == -1){
         printf("Sala não encontrada");
+        return;
+    }
+
+    if(salaPossuiSessoes(codigo)){
+        printf("Nao e possivel excluir esta sala. Existem sessoes vinculadas.\n");
         return;
     }
 
