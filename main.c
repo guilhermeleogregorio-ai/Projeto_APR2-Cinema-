@@ -486,8 +486,11 @@ void alterar_filmes(){
         printf("Novo diretor (%s): ", filmes[pos].diretor);
         scanf(" %[^\n]", filmes[pos].diretor);
 
-        printf("Quantidade de atores: ");
-        scanf("%d", &filmes[pos].qtdAtores);
+        do{
+            printf("Quantidade de atores (1 a 10): ");
+            scanf("%d", &filmes[pos].qtdAtores);
+        }while(filmes[pos].qtdAtores < 1 ||
+            filmes[pos].qtdAtores > 10);
 
         for(i = 0; i < filmes[pos].qtdAtores; i++){
             printf("Ator %d: ", i + 1);
