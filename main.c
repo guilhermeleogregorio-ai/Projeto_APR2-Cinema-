@@ -494,6 +494,11 @@ void excluir_filmes(){
         return;
     }
 
+    if(filmePossuiSessoes(codigo)){
+        printf("Nao e possivel excluir este filme. Existem sessoes vinculadas.\n");
+        return;
+    }
+
     printf("\nFilme encontrado:");
     printf("\nCodigo: %d", filmes[pos].codigo);
     printf("\nNome: %s", filmes[pos].nome);
