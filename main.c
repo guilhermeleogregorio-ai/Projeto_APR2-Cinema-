@@ -33,6 +33,16 @@ typedef struct {
     float preco;
 } Sessao;
 
+// Variávies globais
+    Sala *salas= NULL;
+    int qtdSalas = 0;
+
+    Filme *filmes = NULL;
+    int qtdFilmes = 0;
+
+    Sessao *sessoes = NULL;
+    int qtdSessoes = 0;
+
 // Funções auxiliares
 int stringDataParaInt(char *dataStr) {
     int dia, mes, ano;
@@ -92,17 +102,6 @@ int salaPossuiSessoes(int codSala){
 
     return 0;
 }
-
-
-// Variávies globais
-Sala *salas= NULL;
-int qtdSalas = 0;
-
-Filme *filmes = NULL;
-int qtdFilmes = 0;
-
-Sessao *sessoes = NULL;
-int qtdSessoes = 0;
 
 //Protótipos
 
